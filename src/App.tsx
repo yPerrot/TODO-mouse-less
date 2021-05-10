@@ -1,26 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from 'react';
+import CSS from 'csstype';
+import NewTask from './components/NewTask';
+import Task from './components/Task';
+
+const appStyle: CSS.Properties = {
+    maxHeight: '250px',
+    width: '500px',
+    boxSizing: 'border-box'
+}
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    const [ tasks, setTasks] = useState<string[]>([]);
+
+    useEffect(() => {
+        setTasks(['task1','task2','task3','task1','task2','task3','task1','task2','task3' ])
+    }, [])
+
+    return (
+        <div style={appStyle}>
+            <table><tbody>
+            {tasks.map((e, id) => (
+                <tr key={id}><td><Task text={e} type=""/></td></tr>
+            ))}
+            <tr><td><NewTask /></td></tr>
+            </tbody></table>
+        </div>
+    );
 }
 
 export default App;

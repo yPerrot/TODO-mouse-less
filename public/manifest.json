@@ -1,25 +1,27 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
-  "icons": [
-    {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
-    },
-    {
-      "src": "logo192.png",
-      "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "logo512.png",
-      "type": "image/png",
-      "sizes": "512x512"
+  "name": "TODO List Mouse Less",
+  "description": "Manage your task more efficiantly by using only keybord.",
+  "version": "1.0.0",
+  "manifest_version": 2,
+  "homepage_url": "https://github.com/yperrot/todo-list-extension",
+  "browser_action": {
+    "default_popup": "index.html",
+    "default_title": "TODO List",
+    "default_icon": {
+      "48": "logo48.png",
+      "96": "logo96.png"
     }
-  ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  },
+  "icons": {
+    "48": "logo48.png",
+    "96": "logo96.png"
+  },
+
+  "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Y"
+      }
+    }
+  }
 }
