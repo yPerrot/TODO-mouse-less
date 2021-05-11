@@ -1,22 +1,24 @@
 import { FC, useEffect, useState, useRef } from 'react';
 
 interface propsNewTask {
-    addTask: (task: string) => void
+    isAscendingOrder: boolean,
+    addTask: (task: string, isAscendingOrder: boolean) => void
 }
 
-const NewTask:FC<propsNewTask> = ({ addTask }) => {
+const NewTask:FC<propsNewTask> = ({ addTask, isAscendingOrder }) => {
 
     const [inputString, setInputString] = useState('');
     const inputStringRef = useRef(inputString); // Use useRef to have access to my state in listener
 
     useEffect(() => {
-        console.log("UseEffect");
+        console.log("UseEffect: ", isAscendingOrder);
         
         const listener = (event:any) => {
-            if (event.code === "Enter" || event.code === "NumpadEnter") {
+            if ((event.code === "Enter" || event.code === "NumpadEnter") && inputStringRef.current !== '') {
                 event.preventDefault();
-                addTask(inputStringRef.current);
+                addTask(inputStringRef.current, isAscendingOrder);
                 setInputString('');
+                inputStringRef.current = '';
             }
         };
 
@@ -24,7 +26,7 @@ const NewTask:FC<propsNewTask> = ({ addTask }) => {
         return () => {
             document.removeEventListener("keydown", listener);
         };
-    }, []);
+    }, [isAscendingOrder]);
 
     return (
         <input type="string" value={inputString} placeholder="New Task ..." onChange={(e) => {setInputString(e.target.value); inputStringRef.current = e.target.value}}/>
