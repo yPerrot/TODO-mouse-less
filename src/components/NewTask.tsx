@@ -29,7 +29,19 @@ const NewTask:FC<propsNewTask> = ({ addTask, isAscendingOrder }) => {
     }, [isAscendingOrder]);
 
     return (
-        <input type="string" value={inputString} placeholder="New Task ..." onChange={(e) => {setInputString(e.target.value); inputStringRef.current = e.target.value}}/>
+        <textarea 
+            className="new-task" 
+            rows={1} 
+            value={inputString} placeholder="New Task ..." autoFocus={true}
+            onFocus={() => console.log("Focus")} 
+            onChange={(e) => {setInputString(e.target.value); inputStringRef.current = e.target.value}}
+        />
+        // <input 
+        //     className="new-task"
+        //     type="string" value={inputString} placeholder="New Task ..." autoFocus={true}
+        //     onFocus={() => console.log("Focus")} 
+        //     onChange={(e) => {setInputString(e.target.value); inputStringRef.current = e.target.value}}
+        // />
     )
 };
 

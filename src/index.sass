@@ -1,10 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap')
+
+@mixin task-ask($width)
+	border: $width #ffe135 solid
+	
+@mixin task-important($width)
+	border: $width #ed1c24 solid
+	
 body
-  margin: 0
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif
-  -webkit-font-smoothing: antialiased
-  -moz-osx-font-smoothing: grayscal
+	margin: 0
+	// padding: 0.5rem
+	font-family: Poppins, sans-serif
 
+header
+	background-color: grey
+	color: white
+	width: 100vw
+	justify-content: center
+	text-align: center
+	padding: 0.5rem 0
+	margin-bottom: 5px
 
-code 
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace
+.tools
+	float: right
 
+.new-task 
+	border: none
+	border-bottom: 1px solid grey
+	font-family: Poppins, sans-serif
+	height: 2rem
+	&:focus-visible
+		outline: none
+		// border-bottom: none
+
+.task-checkbox 
+	margin: 0 5px
+
+.task
+	margin-top: 0.5rem
+	border-radius: 5px
+	padding: 2px 5px
+	background-color: rgb(104, 104, 104, 0.1)
+	display: flex
+	// justify-content: center
+
+.task-ask
+	&1
+		@include task-ask(2px)
+	&2
+		@include task-ask(3px)
+	&3
+		@include task-ask(4px)
+
+.task-important
+	&1
+		@include task-important(2px)
+	&2
+		@include task-important(3px)
+	&3
+		@include task-important(4px)
+
+.task-normal
+	border: 2px grey solid
+
+.deleteButton
+	border: none
+	background-color: transparent
+	margin-left: auto
+
+.icon
+	color: grey
+	cursor: pointer
+
+		
