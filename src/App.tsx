@@ -1,14 +1,29 @@
 import { useEffect, useState } from 'react';
 import NewTask from './components/NewTask';
 import DisplayTask from './components/DisplayTask';
-import Tools from './components/Tools';
 import Header from './components/Header';
 import { Task } from './utils/Task';
 
 function App() {
 
-    const [ tasks, setTasks] = useState<Task[]>([]);
+    const [ tasks, setTasks] = useState<Task[]>(JSON.parse(localStorage.getItem('tasks') || "[]"));
     const [ isAscendingOrder, setIsAscendingOrder] = useState(true);
+
+    useEffect(() => {
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+    }, [tasks]);
+
+    useEffect(() => {
+        const listener = (event:any) => {
+            if (event.ctrlKey && event.altKey && event.code === "KeyO") changeOrder();
+            // if (event.code === "ArrowUp") {}
+            // if (event.code === "ArrowDown") {}
+            // if (event.code === "Delete") {}
+        };
+
+        document.addEventListener("keydown", listener);
+        return () => {document.removeEventListener("keydown", listener);};
+    }, []);
 
     const addTask = (newTask:string, order:boolean) => {
         const [type, text] = splitTaskString(newTask)
@@ -16,13 +31,23 @@ function App() {
             type: type,
             text: text,
             ended: false,
-            createAt: Date.now(),
+            createAt: new Date(),
         };
-        if (order) {
-            setTasks((oldArray) => oldArray.concat(task))
-        } else {
-            setTasks((oldArray) => [task].concat(oldArray))
-        }
+        if (order) setTasks((oldArray) => oldArray.concat(task))
+        else setTasks((oldArray) => [task].concat(oldArray))
+    }
+
+    const updateTask = () => {
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+    }
+
+    const deleteTask = (task:Task) => {
+        setTasks((oldArray) => oldArray.filter(t => t !== task));
+    }
+
+    const changeOrder = () => {
+        setIsAscendingOrder(!isAscendingOrder);
+        setTasks((oldArray) => [...oldArray].reverse());
     }
 
     const splitTaskString = (taskString:string) => {
@@ -35,55 +60,18 @@ function App() {
         if (taskString.startsWith("?")) return ["ask1", taskString.substr(1)]
 
         return ["normal",taskString]
-
     }
-
-    const deleteTask = (removedTask:string) => {
-        setTasks((oldArray) => oldArray.filter(task => task.text !== removedTask));
-    }
-
-    const changeOrder = () => {
-        setIsAscendingOrder(!isAscendingOrder);
-        setTasks((oldArray) => [...oldArray].reverse());
-    }
-
-    useEffect(() => {
-        console.log("UseEffect: ", isAscendingOrder);
-        
-        const listener = (event:any) => {
-            if (event.code === "KeyO") {
-                changeOrder();
-            }
-
-            if (event.code === "ArrowUp") {
-
-            }
-            if (event.code === "ArrowDown") {
-                
-            }
-            if (event.code === "Delete") {
-                
-            }
-            
-        };
-
-        document.addEventListener("keydown", listener);
-        return () => {
-            document.removeEventListener("keydown", listener);
-        };
-    }, []);
 
     return (
-        <div>
-            <Header />
-            <Tools changeOrder={changeOrder}/>
-            <NewTask isAscendingOrder={isAscendingOrder} addTask={addTask}/>
-
-            {tasks.map((e, id) => (
-                <DisplayTask key={id} task={e} deleteTask={deleteTask}/>
-            ))}
-
-        </div>
+        <>
+            <Header changeOrder={changeOrder}/>
+            <main>
+                <NewTask isAscendingOrder={isAscendingOrder} addTask={addTask}/>
+                {tasks.map((e, id) => (
+                    <DisplayTask key={id} task={e} deleteTask={deleteTask} updateTask={updateTask}/>
+                ))}
+            </main>
+        </>
     );
 }
 

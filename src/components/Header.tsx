@@ -1,13 +1,18 @@
 import { FC } from 'react'
 
 interface propsHeader {
-
+    changeOrder: () => void
 }
 
-const Header:FC<propsHeader> = ({}) => {
+const Header:FC<propsHeader> = ({ changeOrder }) => {
     return (
         <header>
-            MyHeader
+            <div>
+                MyHeader
+            </div>
+            <div className="tools">
+                <button onClick={changeOrder}>Change order</button>
+            </div>
         </header>
     )
 }

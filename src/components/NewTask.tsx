@@ -11,8 +11,6 @@ const NewTask:FC<propsNewTask> = ({ addTask, isAscendingOrder }) => {
     const inputStringRef = useRef(inputString); // Use useRef to have access to my state in listener
 
     useEffect(() => {
-        console.log("UseEffect: ", isAscendingOrder);
-        
         const listener = (event:any) => {
             if ((event.code === "Enter" || event.code === "NumpadEnter") && inputStringRef.current !== '') {
                 event.preventDefault();
@@ -29,19 +27,14 @@ const NewTask:FC<propsNewTask> = ({ addTask, isAscendingOrder }) => {
     }, [isAscendingOrder]);
 
     return (
-        <textarea 
-            className="new-task" 
-            rows={1} 
-            value={inputString} placeholder="New Task ..." autoFocus={true}
-            onFocus={() => console.log("Focus")} 
-            onChange={(e) => {setInputString(e.target.value); inputStringRef.current = e.target.value}}
-        />
-        // <input 
-        //     className="new-task"
-        //     type="string" value={inputString} placeholder="New Task ..." autoFocus={true}
-        //     onFocus={() => console.log("Focus")} 
-        //     onChange={(e) => {setInputString(e.target.value); inputStringRef.current = e.target.value}}
-        // />
+        <div className="new-task-container">
+            <textarea 
+                className="new-task" 
+                rows={1} 
+                value={inputString} placeholder="New Task ..." autoFocus={true}
+                onChange={(e) => {setInputString(e.target.value); inputStringRef.current = e.target.value}}
+            />
+        </div>
     )
 };
 

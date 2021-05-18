@@ -8,7 +8,6 @@
 	
 body
 	margin: 0
-	// padding: 0.5rem
 	font-family: Poppins, sans-serif
 
 header
@@ -20,14 +19,26 @@ header
 	padding: 0.5rem 0
 	margin-bottom: 5px
 
+main
+	padding: 0.5rem
+
 .tools
 	float: right
+	width: 100%
+	margin-left: auto
+
+.new-task-container
+	// justify-content: center
+	text-align: center
 
 .new-task 
 	border: none
 	border-bottom: 1px solid grey
 	font-family: Poppins, sans-serif
 	height: 2rem
+
+	width: 80%
+	
 	&:focus-visible
 		outline: none
 		// border-bottom: none
@@ -71,4 +82,8 @@ header
 	color: grey
 	cursor: pointer
 
-		
+.task-date
+	color: grey
+	font-size: 12px		
+	margin-left: 4px
+	align-self: flex-end
