@@ -13,22 +13,21 @@ body
 header
 	background-color: grey
 	color: white
-	width: 100vw
-	justify-content: center
-	text-align: center
-	padding: 0.5rem 0
+
+	display: flex
+	align-items: center
+
+	padding: 0.5rem 1rem
 	margin-bottom: 5px
+
+
+.tools
+	margin-left: auto
 
 main
 	padding: 0.5rem
 
-.tools
-	float: right
-	width: 100%
-	margin-left: auto
-
 .new-task-container
-	// justify-content: center
 	text-align: center
 
 .new-task 
@@ -57,16 +56,24 @@ main
 .task-ask
 	&1
 		@include task-ask(2px)
+		& > input
+			margin-left: 8px
 	&2
 		@include task-ask(3px)
+		& > input
+			margin-left: 7px
 	&3
 		@include task-ask(4px)
 
 .task-important
 	&1
 		@include task-important(2px)
+		& > input
+			margin-left: 8px
 	&2
 		@include task-important(3px)
+		& > input
+			margin-left: 7px
 	&3
 		@include task-important(4px)
 

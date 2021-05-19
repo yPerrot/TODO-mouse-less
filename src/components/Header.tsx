@@ -7,9 +7,7 @@ interface propsHeader {
 const Header:FC<propsHeader> = ({ changeOrder }) => {
     return (
         <header>
-            <div>
-                MyHeader
-            </div>
+            <p>MyHeader</p>
             <div className="tools">
                 <button onClick={changeOrder}>Change order</button>
             </div>

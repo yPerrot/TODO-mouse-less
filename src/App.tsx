@@ -9,6 +9,39 @@ function App() {
     const [ tasks, setTasks] = useState<Task[]>(JSON.parse(localStorage.getItem('tasks') || "[]"));
     const [ isAscendingOrder, setIsAscendingOrder] = useState(true);
 
+    const addTask = (newTask:string, order:boolean) => {
+        const [type, text] = splitTaskString(newTask)
+        const task:Task = {
+            type: type,
+            text: text,
+            ended: false,
+            createAt: new Date(),
+        };
+        if (order) setTasks((oldArray) => oldArray.concat(task))
+        else setTasks((oldArray) => [task].concat(oldArray))
+    }
+
+    const handleDelete = (taskDate: Date) => {
+        setTasks((oldArray) => oldArray.filter(t => t.createAt !== taskDate));
+    }
+
+    const handleCheck = (taskDate: Date) => {
+        setTasks((oldArray) => oldArray.map(task => {
+            if (task.createAt === taskDate) return {
+                text: task.text,
+                type: task.type,
+                ended: !task.ended,
+                createAt: task.createAt
+            }
+            return task
+        }))
+    }
+
+    const changeOrder = () => {
+        setIsAscendingOrder(!isAscendingOrder);
+        setTasks((oldArray) => [...oldArray].reverse());
+    }
+
     useEffect(() => {
         localStorage.setItem('tasks', JSON.stringify(tasks));
     }, [tasks]);
@@ -25,31 +58,6 @@ function App() {
         return () => {document.removeEventListener("keydown", listener);};
     }, []);
 
-    const addTask = (newTask:string, order:boolean) => {
-        const [type, text] = splitTaskString(newTask)
-        const task:Task = {
-            type: type,
-            text: text,
-            ended: false,
-            createAt: new Date(),
-        };
-        if (order) setTasks((oldArray) => oldArray.concat(task))
-        else setTasks((oldArray) => [task].concat(oldArray))
-    }
-
-    const updateTask = () => {
-        localStorage.setItem('tasks', JSON.stringify(tasks));
-    }
-
-    const deleteTask = (task:Task) => {
-        setTasks((oldArray) => oldArray.filter(t => t !== task));
-    }
-
-    const changeOrder = () => {
-        setIsAscendingOrder(!isAscendingOrder);
-        setTasks((oldArray) => [...oldArray].reverse());
-    }
-
     const splitTaskString = (taskString:string) => {
         if (taskString.startsWith("!!!")) return ["important3", taskString.substr(3)]
         if (taskString.startsWith("!!")) return ["important2", taskString.substr(2)]
@@ -64,11 +72,16 @@ function App() {
 
     return (
         <>
+            {console.log(tasks)}
             <Header changeOrder={changeOrder}/>
             <main>
                 <NewTask isAscendingOrder={isAscendingOrder} addTask={addTask}/>
-                {tasks.map((e, id) => (
-                    <DisplayTask key={id} task={e} deleteTask={deleteTask} updateTask={updateTask}/>
+                {tasks.map((task, id) => (
+                    <DisplayTask key={id} 
+                        text={task.text} type={task.type} 
+                        date={task.createAt} isFinished={task.ended} 
+                        handleDelete={handleDelete} handleCheck={handleCheck}
+                    />
                 ))}
             </main>
         </>

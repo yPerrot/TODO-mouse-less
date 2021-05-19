@@ -1,35 +1,26 @@
-import { FC, useState, useEffect } from 'react';
+import { FC } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
-import { Task } from '../utils/Task';
 
 interface propsTask {
-    task: Task,
-    deleteTask: (task:Task) => void,
-    updateTask: () => void,
+    text: string, 
+    type: string,
+    date: Date,
+    isFinished: boolean, 
+    handleDelete: (date: Date) => void,
+    handleCheck: (date: Date) => void,
 }
 
-const DisplayTask:FC<propsTask> = ({task, deleteTask, updateTask}) => {
-
-    const [isEnded, setIsEnded] = useState(task.ended);
-
-    useEffect(() => {
-        updateTask();
-    }, [isEnded])
-
-    const handleClick = () => {
-        setIsEnded(!isEnded);
-        task.ended = !task.ended
-    }
+const DisplayTask:FC<propsTask> = ({text, type, date, isFinished, handleDelete, handleCheck}) => {
 
     return (
-        <div className={`task task-${task.type}`}>
-            <input className="task-checkbox" type="checkbox" checked={isEnded} onChange={handleClick}/>
-            {isEnded ? 
-                <><del>{task.text}</del><span className="task-date">{task.createAt.toLocaleString()}</span></>  : 
-                <>{task.text}<span className="task-date">{task.createAt.toLocaleString()}</span></>
+        <div className={`task task-${type}`}>
+            <input className="task-checkbox" type="checkbox" checked={isFinished} onChange={() => handleCheck(date)}/>
+            {isFinished ? 
+                <><del>{text}</del><span className="task-date">{date.toLocaleString()}</span></>  : 
+                <>{text}<span className="task-date">{date.toLocaleString()}</span></>
             }
-            <button className="deleteButton" onClick={() => deleteTask(task)}><FontAwesomeIcon className="icon" icon={faTrashAlt} /></button>
+            <button className="deleteButton" onClick={() => handleDelete(date)}><FontAwesomeIcon className="icon" icon={faTrashAlt} /></button>
         </div>
     );
 };
