@@ -43,10 +43,16 @@ function App() {
 
     useEffect(() => {
         const listener = (event:any) => {
-            console.log(document?.activeElement?.getAttribute('data-id'))
+            const activeElem = document?.activeElement
+            
             if (event.ctrlKey && event.altKey && event.code === "KeyO") changeOrder();
-            // if (event.code === "Delete") handleDelete
-            // if (event.ctrlKey && event.altKey && event.code === "KeyD") handleCheck
+            else if (event.code === "Delete" && activeElem?.tagName === "DIV") {
+                const taskId = activeElem?.getAttribute('data-id')
+                handleDelete(Number(taskId))
+            } else if (event.ctrlKey && event.altKey && event.code === "KeyD") {
+                const taskId = activeElem?.getAttribute('data-id')
+                handleCheck(Number(taskId))
+            }
         };
 
         document.addEventListener("keydown", listener);
