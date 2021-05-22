@@ -9,7 +9,7 @@ const Header:FC<propsHeader> = ({ changeOrder }) => {
         <header>
             <p>MyHeader</p>
             <div className="tools">
-                <button onClick={changeOrder}>Change order</button>
+                <button onClick={changeOrder} tabIndex={-1}>Change order</button>
             </div>
         </header>
     )

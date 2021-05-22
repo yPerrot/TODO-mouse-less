@@ -21,18 +21,13 @@ function App() {
         else setTasks((oldArray) => [task].concat(oldArray))
     }
 
-    const handleDelete = (taskDate: Date) => {
-        setTasks((oldArray) => oldArray.filter(t => t.createAt !== taskDate));
+    const handleDelete = (taskId: number) => {
+        setTasks(oldArray => oldArray.filter((_, i) => i !== taskId));
     }
 
-    const handleCheck = (taskDate: Date) => {
-        setTasks((oldArray) => oldArray.map(task => {
-            if (task.createAt === taskDate) return {
-                text: task.text,
-                type: task.type,
-                ended: !task.ended,
-                createAt: task.createAt
-            }
+    const handleCheck = (taskId: number) => {
+        setTasks(oldArray => oldArray.map((task, id) => {
+            if (id === taskId) return Object.assign({}, task, {ended: !task.ended});
             return task
         }))
     }
@@ -48,10 +43,10 @@ function App() {
 
     useEffect(() => {
         const listener = (event:any) => {
+            console.log(document?.activeElement?.getAttribute('data-id'))
             if (event.ctrlKey && event.altKey && event.code === "KeyO") changeOrder();
-            // if (event.code === "ArrowUp") {}
-            // if (event.code === "ArrowDown") {}
-            // if (event.code === "Delete") {}
+            // if (event.code === "Delete") handleDelete
+            // if (event.ctrlKey && event.altKey && event.code === "KeyD") handleCheck
         };
 
         document.addEventListener("keydown", listener);
@@ -80,6 +75,7 @@ function App() {
                     <DisplayTask key={id} 
                         text={task.text} type={task.type} 
                         date={task.createAt} isFinished={task.ended} 
+                        id={id}
                         handleDelete={handleDelete} handleCheck={handleCheck}
                     />
                 ))}

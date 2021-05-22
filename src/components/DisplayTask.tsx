@@ -7,20 +7,31 @@ interface propsTask {
     type: string,
     date: Date,
     isFinished: boolean, 
-    handleDelete: (date: Date) => void,
-    handleCheck: (date: Date) => void,
+    id: number
+    handleDelete: (taskId: number) => void,
+    handleCheck: (taskId: number) => void,
 }
 
-const DisplayTask:FC<propsTask> = ({text, type, date, isFinished, handleDelete, handleCheck}) => {
+const DisplayTask:FC<propsTask> = ({text, type, date, isFinished, id, handleDelete, handleCheck}) => {
 
     return (
-        <div className={`task task-${type}`}>
-            <input className="task-checkbox" type="checkbox" checked={isFinished} onChange={() => handleCheck(date)}/>
+        <div className={`task task-${type}`} tabIndex={0} data-id={id}>
+            <input 
+                className="task-checkbox" type="checkbox" 
+                checked={isFinished} onChange={() => handleCheck(id)}
+                tabIndex={-1}
+            />
             {isFinished ? 
                 <><del>{text}</del><span className="task-date">{date.toLocaleString()}</span></>  : 
                 <>{text}<span className="task-date">{date.toLocaleString()}</span></>
             }
-            <button className="deleteButton" onClick={() => handleDelete(date)}><FontAwesomeIcon className="icon" icon={faTrashAlt} /></button>
+            <button 
+                className="deleteButton" 
+                onClick={() => handleDelete(id)}
+                tabIndex={-1}
+            >
+                <FontAwesomeIcon className="icon" icon={faTrashAlt} />
+            </button>
         </div>
     );
 };
