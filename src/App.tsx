@@ -74,7 +74,7 @@ function App() {
     return (
         <>
             {console.log(tasks)}
-            <Header changeOrder={changeOrder}/>
+            <Header isAscendingOrder={isAscendingOrder} changeOrder={changeOrder}/>
             <main>
                 <NewTask isAscendingOrder={isAscendingOrder} addTask={addTask}/>
                 {tasks.map((task, id) => (
