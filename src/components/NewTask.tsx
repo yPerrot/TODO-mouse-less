@@ -12,11 +12,13 @@ const NewTask:FC<propsNewTask> = ({ addTask, isAscendingOrder }) => {
 
     useEffect(() => {
         const listener = (event:any) => {
-            if ((event.code === "Enter" || event.code === "NumpadEnter") && inputStringRef.current !== '') {
+            if (event.code === "Enter" || event.code === "NumpadEnter") {
                 event.preventDefault();
-                addTask(inputStringRef.current, isAscendingOrder);
-                setInputString('');
-                inputStringRef.current = '';
+                if (inputStringRef.current !== '') {
+                    addTask(inputStringRef.current, isAscendingOrder);
+                    setInputString('');
+                    inputStringRef.current = '';
+                }
             }
         };
 
