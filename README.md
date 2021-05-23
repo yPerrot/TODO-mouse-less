@@ -1,11 +1,30 @@
 <center><img src="./images/Preview.png"></center>
 
-# ToDo Browser Extension - Mouse less
+# ToDo - Mouse less
 
 A todo extension to manage your daily tasks directly in your browser without opening a new tab. This extension has the objective to be usable only with a keyboard.
 
-
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+## Installation
+
+To install the app, run the following commands:
+
+```bash
+$ git clone https://github.com/yPerrot/TODO-mouse-less.git
+$ cd TODO-mouse-less
+$ npm install
+```
+
+You can then start the app with:
+```bash
+$ npm run start
+```
+
+Or you can build it to export it as a web extension:
+```bash
+$ npm run build
+```
 
 ## About Extension
 

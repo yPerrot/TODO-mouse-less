@@ -1,12 +1,12 @@
 {
-  "name": "TODO List Mouse Less",
-  "description": "Manage your task more efficiantly by using only keybord.",
+  "name": "ToDo - Mouse less",
+  "description": "Manage your daily tasks more efficiently by using only your keyboard.",
   "version": "1.0.0",
   "manifest_version": 2,
-  "homepage_url": "https://github.com/yperrot/todo-list-extension",
+  "homepage_url": "https://github.com/yPerrot/TODO-mouse-less",
   "browser_action": {
     "default_popup": "index.html",
-    "default_title": "TODO List",
+    "default_title": "ToDo - Mouse less",
     "default_icon": {
       "16": "./icons/logo16.png",
       "48": "./icons/logo48.png",
