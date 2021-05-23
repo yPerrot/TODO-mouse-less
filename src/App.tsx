@@ -57,7 +57,7 @@ function App() {
 
         document.addEventListener("keydown", listener);
         return () => {document.removeEventListener("keydown", listener);};
-    }, []);
+    });
 
     const splitTaskString = (taskString:string) => {
         if (taskString.startsWith("!!!")) return ["important3", taskString.substr(3)]

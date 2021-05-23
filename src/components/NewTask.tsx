@@ -26,7 +26,7 @@ const NewTask:FC<propsNewTask> = ({ addTask, isAscendingOrder }) => {
         return () => {
             document.removeEventListener("keydown", listener);
         };
-    }, [isAscendingOrder]);
+    }, [isAscendingOrder, addTask]);
 
     return (
         <div className="new-task-container">
