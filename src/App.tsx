@@ -60,13 +60,21 @@ function App() {
     });
 
     const splitTaskString = (taskString:string) => {
-        if (taskString.startsWith("!!!")) return ["important3", taskString.substr(3)]
-        if (taskString.startsWith("!!")) return ["important2", taskString.substr(2)]
-        if (taskString.startsWith("!")) return ["important1", taskString.substr(1)]
+        if (taskString.startsWith("!!!")) return ["urgent3", taskString.substr(3)]
+        if (taskString.startsWith("!!")) return ["urgent2", taskString.substr(2)]
+        if (taskString.startsWith("!")) return ["urgent1", taskString.substr(1)]
         
         if (taskString.startsWith("???")) return ["ask3", taskString.substr(3)]
         if (taskString.startsWith("??")) return ["ask2", taskString.substr(2)]
         if (taskString.startsWith("?")) return ["ask1", taskString.substr(1)]
+        
+        if (taskString.startsWith("+++")) return ["main3", taskString.substr(3)]
+        if (taskString.startsWith("++")) return ["main2", taskString.substr(2)]
+        if (taskString.startsWith("+")) return ["main1", taskString.substr(1)]
+        
+        if (taskString.startsWith("***")) return ["validate3", taskString.substr(3)]
+        if (taskString.startsWith("**")) return ["validate2", taskString.substr(2)]
+        if (taskString.startsWith("*")) return ["validate1", taskString.substr(1)]
 
         return ["normal",taskString]
     }

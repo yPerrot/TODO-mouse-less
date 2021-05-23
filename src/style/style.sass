@@ -1,20 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap')
 
-=task-border($color, $width, $offset)
-	border-color: $color
-	border-style: solid
-	border-width: $width
-	& > input
-		margin-left: $offset
-	
 %clear-button
 	border: none
 	background-color: transparent	
 	
 // -- ROOT --
-
-$color-ask: #ffe135
-$color-important: #ed1c24
 
 body
 	margin: 0
@@ -82,25 +72,6 @@ main
 	
 	&:focus
 		box-shadow: 0px 0px 10px 3px rgba(120,119,119,0.75)
-
-.task-ask
-	&1	
-		+task-border($color-ask, 2px, 8px)
-	&2
-		+task-border($color-ask, 3px, 7px)
-	&3
-		+task-border($color-ask, 4px, 6px)
-
-.task-important
-	&1	
-		+task-border($color-important, 2px, 8px)
-	&2
-		+task-border($color-important, 3px, 7px)
-	&3
-		+task-border($color-important, 4px, 6px)
-
-.task-normal
-	+task-border(grey, 2px, 8px)
 
 .deleteButton
 	@extend %clear-button

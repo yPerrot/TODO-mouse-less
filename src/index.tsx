@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.sass';
+import './style/style.sass';
+import './style/task-style.sass';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 

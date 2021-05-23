@@ -1,4 +1,4 @@
-<center><img src="./Preview.png"></center>
+<center><img src="./images/Preview.png"></center>
 
 # ToDo Browser Extension - Mouse less
 
@@ -32,16 +32,38 @@ Here are the shortcuts available in the extension:
 
 To apply a style to your task, start it with a valid special character repeated 1 to 3 times. The more the character is repeated the stronger the border will be.
 
-### Important
+### Main
 
-To mark a task as an important one, use `!`.  
+To mark a task as a main one, use `+`.  
 Here is the result for the following input:
 
- - ! Level 1 Important task
- - !! Level 2 Important task
- - !!! Level 3 Important task
+ - \+ Level 1 Main task
+ - ++ Level 2 Main task
+ - +++ Level 3 Important task
 
-![Important Tasks](./Important.png)
+![Main Tasks](./images/Main.png)
+
+### Validate
+
+To mark a task as a validate one, use `*`.  
+Here is the result for the following input:
+
+ - \* Level 1 Validate task
+ - ** Level 2 Validate task
+ - *** Level 3 Validate task
+
+![Validate Tasks](./images/Validate.png)
+
+### Urgent
+
+To mark a task as an urgent one, use `!`.  
+Here is the result for the following input:
+
+ - ! Level 1 Urgent task
+ - !! Level 2 Urgent task
+ - !!! Level 3 Urgent task
+
+![Urgent Tasks](./images/Urgent.png)
 
 ### Ask
 
@@ -52,7 +74,7 @@ Here is the result for the following input:
  - ?? Level 2 Ask task
  - ??? Level 3 Ask task
 
-![Ask Tasks](./Ask.png)
+![Ask Tasks](./images/Ask.png)
 
 ## License
 

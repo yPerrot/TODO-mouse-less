@@ -1,0 +1,62 @@
+=task-border-1($color)
+	border-color: $color
+	border-style: solid
+	border-width: 2px
+	& > input
+		margin-left: 8px
+
+=task-border-2($color)
+	border-color: $color
+	border-style: solid
+	border-width: 3px
+	& > input
+		margin-left: 7px
+
+=task-border-3($color)
+	border-color: $color
+	border-style: solid
+	border-width: 4px
+	& > input
+		margin-left: 6px
+
+$color-ask: #ffe135
+$color-urgent: #ed1c24
+$color-validate: #00a550
+$color-main: #333399
+
+// -- Tasks border styel --
+
+.task-normal
+	+task-border-1(grey)
+
+.task-ask
+	&1	
+		+task-border-1($color-ask)
+	&2
+		+task-border-2($color-ask)
+	&3
+		+task-border-3($color-ask)
+
+.task-urgent
+	&1	
+		+task-border-1($color-urgent)
+	&2
+		+task-border-2($color-urgent)
+	&3
+		+task-border-3($color-urgent)
+
+.task-validate
+	&1	
+		+task-border-1($color-validate)
+	&2
+		+task-border-2($color-validate)
+	&3
+		+task-border-3($color-validate)
+
+.task-main
+	&1	
+		+task-border-1($color-main)
+	&2
+		+task-border-2($color-main)
+	&3
+		+task-border-3($color-main)
